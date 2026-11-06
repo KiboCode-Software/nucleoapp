@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{NAME}} · {{TAGLINE}}</title>
+    <meta name="description" content="{{DESCRIPTION}}" />
+    <meta name="author" content="{{MAKER}}" />
+    <meta name="theme-color" content="#fbfbfd" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" type="image/svg+xml" href="assets/icon.svg" />
+    <link rel="canonical" href="{{URL}}/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{{NAME}} · {{TAGLINE}}" />
+    <meta property="og:description" content="{{DESCRIPTION}}" />
+    <meta property="og:url" content="{{URL}}/" />
+    <meta property="og:image" content="{{URL}}/assets/shots/entregas-1200.webp" />
+    <link rel="preload" href="assets/inter.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" as="image" type="image/webp" href="assets/shots/entregas-1200.webp" imagesrcset="{{SRCSET:entregas}}" imagesizes="(max-width: 1212px) calc(100vw - 32px), 1180px" fetchpriority="high" />
+    <link rel="stylesheet" href="styles.css?v={{VERSION}}" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "{{NAME}}",
+        "operatingSystem": "Windows 10, Windows 11",
+        "applicationCategory": "ProductivityApplication",
+        "softwareVersion": "{{VERSION}}",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "author": { "@type": "Organization", "name": "{{MAKER}}", "url": "{{MAKER_URL}}" },
+        "publisher": { "@type": "Organization", "name": "{{MAKER}}", "url": "{{MAKER_URL}}" },
+        "downloadUrl": "{{DOWNLOAD_URL}}"
+      }
+    </script>
+  </head>
+  <body data-name="{{NAME}}">
+    <a class="skip" href="#main">Saltar al contenido</a>
+
+    <header class="nav">
+      <div class="wrap nav__inner">
+        <a class="brand" href="#top" aria-label="{{NAME}}, inicio">
+          <img src="assets/icon.svg" alt="" width="28" height="28" />
+          <span>{{NAME}}</span>
+        </a>
+        <nav class="nav__links" aria-label="Secciones">
+          <a href="#modos">Modos</a>
+          <a href="#funciones">Funciones</a>
+          <a href="#privacidad">Privacidad</a>
+          <a href="#instalar">Instalación</a>
+        </nav>
+        <a class="btn btn--small js-download" href="{{DOWNLOAD}}" download>Descargar</a>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- ─── Portada ─────────────────────────────────────────────── -->
+      <section class="hero" id="top">
+        <div class="wrap hero__inner">
+          <img class="hero__icon" src="assets/icon.svg" alt="" width="96" height="96" />
+          <a class="maker-pill" href="{{MAKER_URL}}" rel="author">
+            <img src="assets/kibocode-mark.svg" alt="" width="20" height="20" />
+            <span>Una app de <span class="kc">KiboCode<span class="kc__dot">.</span></span></span>
+            {{ICON:chevron-right}}
+          </a>
+          <h1>{{TAGLINE}}</h1>
+          <p class="lead">Planea tu día, resuelve lo que te frena y recuerda lo que aprendes.</p>
+          <div class="cta">
+            <a class="btn btn--big js-download" href="{{DOWNLOAD}}" download>
+              <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M3 5.1 10.4 4v7.2H3V5.1Zm0 13.8L10.4 20v-7.1H3v6Zm8.3 1.2L21 21.5v-8.6h-9.7v7.2Zm0-16.2v7.3H21V2.5l-9.7 1.4Z"/></svg>
+              Descargar para Windows
+            </a>
+            <a class="more" href="#instalar">Ver cómo se instala {{ICON:chevron-right}}</a>
+          </div>
+          <p class="cta__meta">Gratis · Versión {{VERSION}} · {{SIZE}} · {{REQUIREMENTS}}</p>
+          <p class="cta__other js-not-windows" hidden>
+            {{NAME}} es para PC con Windows. <button type="button" class="link js-copy">Copia el enlace</button> y ábrelo en tu ordenador.
+          </p>
+        </div>
+        <figure class="window window--hero reveal">
+          <div class="window__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+          <img {{SHOT:entregas|(max-width: 1212px) calc(100vw - 32px), 1180px}} width="2160" height="1350" alt="{{NAME}} en modo estudio: la próxima entrega con su cuenta regresiva y la línea de tiempo de la semana." fetchpriority="high" decoding="async" />
+        </figure>
+      </section>
+
+      <!-- ─── Dos modos ───────────────────────────────────────────── -->
+      <section class="section" id="modos">
+        <div class="wrap">
+          <p class="kicker reveal">Dos modos</p>
+          <h2 class="reveal">Para el trabajo.<br />Para estudiar.</h2>
+          <p class="section__lead reveal">Elige tu modo y la app habla tu idioma: proyectos y bloqueos, o materias, dudas y entregas. Cada perfil guarda sus datos por separado.</p>
+
+          <div class="switch reveal" role="radiogroup" aria-label="Modo">
+            <button type="button" role="radio" aria-checked="true" data-mode="dev">{{ICON:code}} Desarrollo</button>
+            <button type="button" role="radio" aria-checked="false" data-mode="study">{{ICON:graduation-cap}} Estudio</button>
+            <span class="switch__thumb" aria-hidden="true"></span>
+          </div>
+
+          <figure class="window reveal">
+            <div class="window__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+            <img class="js-mode-shot" data-dev="{{SRCSET:tablero}}" data-study="{{SRCSET:registro}}" {{SHOT:tablero|(max-width: 1112px) calc(100vw - 32px), 1080px}} width="2160" height="1350" loading="lazy" decoding="async" alt="Tablero de bloqueos del modo desarrollo." data-alt-dev="Tablero de bloqueos del modo desarrollo." data-alt-study="Registro diario del modo estudio: plan de estudio, dudas y lo que aprendí." />
+          </figure>
+          <p class="mode-caption js-mode-caption" data-dev="Tareas, bloqueos técnicos, comandos y tus commits de Git del día." data-study="Materias, dudas, apuntes, entregas y exámenes, para cualquier carrera.">Tareas, bloqueos técnicos, comandos y tus commits de Git del día.</p>
+        </div>
+      </section>
+
+      <!-- ─── Funciones (mosaico) ─────────────────────────────────── -->
+      <section class="section section--tint" id="funciones">
+        <div class="wrap">
+          <p class="kicker reveal">Funciones</p>
+          <h2 class="reveal">Todo tu día.<br />En un solo lugar.</h2>
+
+          <div class="bento">
+            <article class="tile tile--wide reveal">
+              <div class="tile__text">
+                <h3>Sabes qué nota necesitas.</h3>
+                <p>Media ponderada por materia y lo que te falta para aprobar.</p>
+              </div>
+              <img {{SHOT:notas|(max-width: 640px) calc(100vw - 58px), (max-width: 1000px) calc(100vw - 68px), 740px}} width="2160" height="1350" loading="lazy" decoding="async" alt="Calculadora de notas por materia." />
+            </article>
+
+            <article class="tile tile--dark tile--tall reveal">
+              <div class="tile__text">
+                <h3>Concéntrate.</h3>
+                <p>Bloques de enfoque con descansos automáticos.</p>
+              </div>
+              <img {{SHOT:enfoque|(max-width: 1000px) calc(100vw - 32px), 760px}} width="2160" height="1350" loading="lazy" decoding="async" alt="Temporizador de enfoque en modo oscuro." />
+            </article>
+
+            <article class="tile tile--wide reveal">
+              <div class="tile__text">
+                <h3>Encuéntralo todo.</h3>
+                <p><kbd>Ctrl</kbd> <kbd>K</kbd> desde cualquier pantalla.</p>
+              </div>
+              <img {{SHOT:buscar|(max-width: 640px) calc(100vw - 58px), (max-width: 1000px) calc(100vw - 68px), 740px}} width="2160" height="1350" loading="lazy" decoding="async" alt="Búsqueda global con acciones rápidas." />
+            </article>
+
+            <article class="tile tile--icon reveal">
+              <span class="tile__icon" style="--c:#34c759">{{ICON:layers}}</span>
+              <h3>Repaso espaciado</h3>
+              <p>Tus apuntes vuelven justo antes de que los olvides.</p>
+            </article>
+
+            <article class="tile tile--icon reveal">
+              <span class="tile__icon" style="--c:#af52de">{{ICON:zap}}</span>
+              <h3>Captura rápida</h3>
+              <p><kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>Espacio</kbd> desde cualquier programa.</p>
+            </article>
+
+            <article class="tile tile--icon reveal">
+              <span class="tile__icon" style="--c:#ff2d55">{{ICON:calendar-clock}}</span>
+              <h3>Avisos de entregas</h3>
+              <p>Un día antes, una hora antes. Nunca más tarde.</p>
+            </article>
+
+            <article class="tile tile--icon reveal">
+              <span class="tile__icon" style="--c:#00c7be">{{ICON:file-text}}</span>
+              <h3>Reportes solos</h3>
+              <p>Tu semana resumida en PDF, Markdown o CSV.</p>
+            </article>
+
+            <article class="tile tile--icon reveal">
+              <span class="tile__icon" style="--c:#007aff">{{ICON:git-commit-horizontal}}</span>
+              <h3>Commits de Git</h3>
+              <p>Lo que subiste hoy pasa al plan con un clic.</p>
+            </article>
+
+            <article class="tile tile--icon reveal">
+              <span class="tile__icon" style="--c:#ff9500">{{ICON:square-kanban}}</span>
+              <h3>Tablero de bloqueos</h3>
+              <p>Arrastra cada problema hasta «Resuelto».</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── Privacidad ──────────────────────────────────────────── -->
+      <section class="section section--dark" id="privacidad">
+        <div class="wrap privacy">
+          <div class="privacy__text">
+            <p class="kicker reveal">Privacidad</p>
+            <h2 class="reveal">Tus datos.<br />En tu PC.</h2>
+            <p class="section__lead reveal">Sin cuenta, sin servidores, sin rastreo. Funciona sin internet, y esta página tampoco usa cookies.</p>
+            <ul class="facts reveal">
+              <li>{{ICON:wifi-off}}<span><b>Sin conexión.</b> Todo vive en tu equipo.</span></li>
+              <li>{{ICON:scan-face}}<span><b>Windows Hello.</b> Tu rostro, tu huella o un código.</span></li>
+              <li>{{ICON:hard-drive}}<span><b>Respaldos diarios.</b> Y exportaciones cifradas.</span></li>
+            </ul>
+          </div>
+          <figure class="window window--lock reveal">
+            <img {{SHOT:bloqueo|(max-width: 1000px) calc(100vw - 32px), 640px}} width="2160" height="1350" loading="lazy" decoding="async" alt="Pantalla de bloqueo con código, al estilo de iOS." />
+          </figure>
+        </div>
+      </section>
+
+      <!-- ─── Instalación ─────────────────────────────────────────── -->
+      <section class="section" id="instalar">
+        <div class="wrap">
+          <p class="kicker reveal">Instalación</p>
+          <h2 class="reveal">Lista en un minuto.</h2>
+          <p class="section__lead reveal">Tres pasos, como cualquier programa de Windows. Sin contraseña de administrador.</p>
+
+          <ol class="steps">
+            <li class="step reveal">
+              <span class="step__n">1</span>
+              <h3>Descarga y ábrelo</h3>
+              <p>Al terminar, haz clic en el archivo arriba a la derecha de tu navegador, o búscalo en <b>Descargas</b>.</p>
+              <div class="ill ill--browser" aria-hidden="true">
+                <div class="ill__bar"><span class="ill__url">{{URL_HOST}}</span><span class="ill__dl">{{ICON:download}}</span></div>
+                <div class="ill__popup">
+                  <p>Descargas</p>
+                  <div class="ill__file"><img src="assets/icon.svg" alt="" width="22" height="22" /><span><b>{{INSTALLER}}</b><small>{{SIZE}} · Listo</small></span></div>
+                  <span class="ill__open pulse">Abrir archivo</span>
+                </div>
+              </div>
+            </li>
+
+            <li class="step reveal">
+              <span class="step__n">2</span>
+              <h3>Si Windows avisa, continúa</h3>
+              <p>Pulsa <b>Más información</b> y luego <b>Ejecutar de todas formas</b>. Es normal con las apps nuevas.</p>
+              <div class="ill ill--smartscreen" aria-hidden="true">
+                <p class="ss__title">Windows protegió su PC</p>
+                <p class="ss__text">Microsoft Defender SmartScreen impidió el inicio de una aplicación no reconocida.</p>
+                <p class="ss__more"><span class="pulse">Más información</span></p>
+                <p class="ss__text ss__small">Aplicación: {{INSTALLER}}<br />Editor: Editor desconocido</p>
+                <div class="ss__buttons"><span class="pulse pulse--delay">Ejecutar de todas formas</span><span>No ejecutar</span></div>
+              </div>
+            </li>
+
+            <li class="step reveal">
+              <span class="step__n">3</span>
+              <h3>Instala y empieza</h3>
+              <p>Pulsa <b>Instalar</b>. Al terminar, {{NAME}} se abre sola y queda en el menú Inicio.</p>
+              <div class="ill ill--installer" aria-hidden="true">
+                <div class="inst__head"><img src="assets/icon.svg" alt="" width="26" height="26" /><b>Instalación de {{NAME}}</b></div>
+                <div class="inst__bar"><i></i></div>
+                <p class="inst__text">Instalación completada</p>
+                <label class="inst__check"><span>✓</span> Ejecutar {{NAME}}</label>
+                <div class="inst__buttons"><span class="pulse">Terminar</span></div>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ─── Preguntas ───────────────────────────────────────────── -->
+      <section class="section section--tint" id="preguntas">
+        <div class="wrap wrap--narrow">
+          <h2 class="reveal">Preguntas frecuentes</h2>
+          <div class="faq reveal">
+            <details>
+              <summary>¿Es gratis?</summary>
+              <p>Sí. Sin suscripción, sin anuncios y sin cuenta.</p>
+            </details>
+            <details>
+              <summary>¿Por qué Windows dice «Windows protegió su PC»?</summary>
+              <p>Windows muestra ese aviso con los programas nuevos que aún no tienen una firma digital de pago. No significa que tengan virus. Pulsa <b>Más información → Ejecutar de todas formas</b>. Si quieres comprobar que el archivo es el original, su huella SHA-256 está al final de esta sección.</p>
+            </details>
+            <details>
+              <summary>¿Qué necesito?</summary>
+              <p>Un PC con {{REQUIREMENTS}}. Internet solo para descargarla.</p>
+            </details>
+            <details>
+              <summary>¿Dónde se guardan mis datos?</summary>
+              <p>En tu propio PC, en la carpeta de datos de tu usuario. Nada se envía a ningún servidor.</p>
+            </details>
+            <details>
+              <summary>¿Cómo la actualizo?</summary>
+              <p>Descarga la versión nueva desde esta página e instálala encima: tus datos se conservan.</p>
+            </details>
+            <details>
+              <summary>¿Cómo la desinstalo?</summary>
+              <p><b>Configuración → Aplicaciones → Aplicaciones instaladas</b>, busca {{NAME}} y pulsa <b>Desinstalar</b>.</p>
+            </details>
+            <details>
+              <summary>¿Hay versión para Mac, Linux o móvil?</summary>
+              <p>Por ahora solo para Windows.</p>
+            </details>
+          </div>
+          <p class="hash">Huella SHA-256 de {{INSTALLER}}:<br /><code>{{SHA256}}</code></p>
+        </div>
+      </section>
+
+      <!-- ─── Cierre ──────────────────────────────────────────────── -->
+      <section class="final">
+        <span class="watermark kc" aria-hidden="true">KiboCode.</span>
+        <div class="wrap">
+          <img class="final__icon reveal" src="assets/icon.svg" alt="" width="80" height="80" loading="lazy" />
+          <h2 class="reveal">Empieza hoy.</h2>
+          <div class="cta reveal">
+            <a class="btn btn--big js-download" href="{{DOWNLOAD}}" download>Descargar para Windows</a>
+          </div>
+          <p class="cta__meta">Gratis · {{SIZE}} · {{REQUIREMENTS}}</p>
+          <a class="signature reveal" href="{{MAKER_URL}}" rel="author">
+            <img src="assets/kibocode-mark.svg" alt="" width="44" height="44" loading="lazy" />
+            <span><small>Un proyecto de</small><span class="kc">KiboCode<span class="kc__dot">.</span></span></span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap footer__inner">
+        <span class="brand"><img src="assets/icon.svg" alt="" width="20" height="20" /> {{NAME}}</span>
+        <span class="footer__made">
+          <img src="assets/kibocode-mark.svg" alt="" width="18" height="18" />
+          Diseñado por <a href="{{MAKER_URL}}" rel="author"><span class="kc">KiboCode<span class="kc__dot">.</span></span></a> en Latinoamérica
+        </span>
+        <span>© {{YEAR}} {{MAKER}} · <a href="{{MAKER_URL}}">{{MAKER_HOST}}</a></span>
+      </div>
+    </footer>
+
+    <!-- Al pulsar Descargar: qué hacer ahora, mientras baja el archivo. -->
+    <div class="sheet" id="after-download" role="dialog" aria-modal="true" aria-labelledby="after-title" hidden>
+      <div class="sheet__backdrop" data-close></div>
+      <div class="sheet__panel">
+        <button type="button" class="sheet__close" data-close aria-label="Cerrar">{{ICON:x}}</button>
+        <div class="sheet__check" aria-hidden="true">{{ICON:check}}</div>
+        <h2 id="after-title">Tu descarga ha empezado</h2>
+        <p class="sheet__lead">Ahora sigue estos pasos:</p>
+        <ol class="mini-steps">
+          <li><b>Abre el archivo</b> <span class="js-browser-hint">en la esquina superior derecha de tu navegador o en la carpeta Descargas</span>.</li>
+          <li>Si sale <b>«Windows protegió su PC»</b>, pulsa <b>Más información</b> y después <b>Ejecutar de todas formas</b>.</li>
+          <li>Pulsa <b>Instalar</b>. {{NAME}} se abrirá sola al terminar.</li>
+        </ol>
+        <p class="sheet__retry">¿No empezó? <a href="{{DOWNLOAD}}" download>Descárgala aquí</a>.</p>
+      </div>
+    </div>
+
+    <div class="toast" role="status" aria-live="polite" hidden></div>
+    <script src="app.js?v={{VERSION}}" defer></script>
+  </body>
+</html>

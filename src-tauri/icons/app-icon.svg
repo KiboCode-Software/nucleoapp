@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <!-- Núcleo · "Bitácora": libreta con anillas y el símbolo de código. Fuente de todos los iconos (npx tauri icon). -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4AA8FF"/>
+      <stop offset="1" stop-color="#0062E0"/>
+    </linearGradient>
+    <linearGradient id="page" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#EEF4FF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Fondo con esquinas de icono de iOS (~22,5 %) -->
+  <rect width="1024" height="1024" rx="230" fill="url(#bg)"/>
+
+  <!-- Sombra de la libreta -->
+  <rect x="300" y="232" width="460" height="600" rx="64" fill="#003C99" opacity="0.28"/>
+  <!-- Libreta -->
+  <rect x="290" y="210" width="460" height="600" rx="64" fill="url(#page)"/>
+
+  <!-- Anillas -->
+  <g fill="#1A86FF">
+    <circle cx="290" cy="340" r="34"/>
+    <circle cx="290" cy="510" r="34"/>
+    <circle cx="290" cy="680" r="34"/>
+  </g>
+  <g fill="#FFFFFF" opacity="0.9">
+    <circle cx="290" cy="340" r="13"/>
+    <circle cx="290" cy="510" r="13"/>
+    <circle cx="290" cy="680" r="13"/>
+  </g>
+
+  <!-- </> -->
+  <g fill="none" stroke="#1A86FF" stroke-width="46" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="466,432 390,510 466,588"/>
+    <line x1="563" y1="420" x2="529" y2="600"/>
+    <polyline points="626,432 702,510 626,588"/>
+  </g>
+</svg>

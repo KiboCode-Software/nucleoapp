@@ -1,0 +1,1412 @@
+/* Página de descarga · al estilo de las páginas de producto de Apple. */
+/* Archivo: la tipografía de la marca KiboCode (solo para su logotipo). */
+@font-face {
+  font-family: "Archivo";
+  src: url("assets/archivo.woff2") format("woff2");
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("assets/inter.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  --bg: #fbfbfd;
+  --surface: #ffffff;
+  --tint: #f5f5f7;
+  --ink: #1d1d1f;
+  --muted: #6e6e73;
+  --line: rgb(0 0 0 / 0.1);
+  --accent: #0071e3;
+  --accent-hover: #0077ed;
+  --link: #0066cc;
+  --success: #34c759;
+  --shadow: 0 24px 60px rgb(0 0 0 / 0.14);
+  --radius: 28px;
+  --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #000000;
+    --surface: #161617;
+    --tint: #101010;
+    --ink: #f5f5f7;
+    --muted: #86868b;
+    --line: rgb(255 255 255 / 0.12);
+    --accent: #0071e3;
+    --accent-hover: #0077ed;
+    --link: #2997ff;
+    --shadow: 0 24px 60px rgb(0 0 0 / 0.7);
+    color-scheme: dark;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 17px/1.47 "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  letter-spacing: -0.022em;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+
+h2 {
+  font-size: clamp(40px, 6.4vw, 80px);
+  text-align: center;
+}
+
+h3 {
+  font-size: 21px;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+kbd {
+  display: inline-block;
+  min-width: 1.6em;
+  padding: 1px 7px;
+  border: 1px solid var(--line);
+  border-bottom-width: 2px;
+  border-radius: 6px;
+  background: var(--surface);
+  font: 600 0.82em/1.5 "Inter", system-ui, sans-serif;
+  text-align: center;
+  color: var(--ink);
+}
+
+.i {
+  width: 1.15em;
+  height: 1.15em;
+  flex-shrink: 0;
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+.skip {
+  position: absolute;
+  left: -999px;
+  top: 8px;
+  z-index: 100;
+  padding: 8px 14px;
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.skip:focus {
+  left: 8px;
+}
+
+.wrap {
+  width: min(1180px, 100% - 32px);
+  margin-inline: auto;
+}
+
+.wrap--narrow {
+  width: min(760px, 100% - 32px);
+}
+
+/* ─── Aparición al hacer scroll (solo con JavaScript activo) ──────────────── */
+.js-reveal .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.6s var(--ease-out),
+    transform 0.6s var(--ease-out);
+}
+
+.js-reveal .reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+.js-reveal .window--hero.reveal {
+  transform: translateY(32px) scale(0.97);
+}
+
+.js-reveal .window--hero.reveal.is-in {
+  transform: none;
+}
+
+/* Las fichas del mosaico entran casi a la vez, con un leve escalonado. */
+.bento .reveal:nth-child(even) {
+  transition-delay: 0.05s;
+}
+
+/* ─── Botones y enlaces ───────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border-radius: 980px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  transition:
+    background-color 0.2s,
+    transform 0.2s var(--ease);
+}
+
+.btn:hover {
+  background: var(--accent-hover);
+  text-decoration: none;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn--small {
+  padding: 5px 14px;
+  font-size: 13px;
+}
+
+.btn--big {
+  padding: 15px 30px;
+  font-size: 18px;
+}
+
+.more {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 18px;
+}
+
+.more .i {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.2s var(--ease);
+}
+
+.more:hover .i {
+  transform: translateX(3px);
+}
+
+.link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--link);
+  font: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* ─── Barra superior ──────────────────────────────────────── */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  backdrop-filter: saturate(180%) blur(14px);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav__inner {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  height: 52px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.brand:hover {
+  text-decoration: none;
+}
+
+.brand img {
+  border-radius: 7px;
+}
+
+.nav__links {
+  display: flex;
+  gap: 26px;
+  margin-left: auto;
+  font-size: 13px;
+}
+
+.nav__links a {
+  color: var(--ink);
+  opacity: 0.8;
+}
+
+.nav__links a:hover {
+  opacity: 1;
+  text-decoration: none;
+}
+
+/* ─── Portada ─────────────────────────────────────────────── */
+.hero {
+  padding: 80px 0 0;
+  text-align: center;
+  overflow: hidden;
+  background:
+    radial-gradient(60% 50% at 50% 100%, rgb(0 113 227 / 0.12), transparent 70%),
+    var(--bg);
+}
+
+.hero__icon {
+  margin: 0 auto 24px;
+  filter: drop-shadow(0 14px 28px rgb(0 98 224 / 0.3));
+  animation: rise 0.6s var(--ease-out) both;
+}
+
+h1 {
+  font-size: clamp(48px, 8.5vw, 96px);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  animation: rise 0.6s var(--ease-out) 0.04s both;
+}
+
+.lead {
+  max-width: 620px;
+  margin: 18px auto 0;
+  color: var(--muted);
+  font-size: clamp(21px, 2.6vw, 28px);
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  animation: rise 0.6s var(--ease-out) 0.08s both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+.cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px 28px;
+  margin-top: 34px;
+  animation: rise 0.6s var(--ease-out) 0.12s both;
+}
+
+.cta__meta {
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.cta__other {
+  max-width: 440px;
+  margin: 16px auto 0;
+  padding: 12px 18px;
+  border-radius: 14px;
+  background: var(--tint);
+  font-size: 15px;
+}
+
+/* Ventana con la captura real de la app */
+.window {
+  margin: 0 auto;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  outline: 1px solid var(--line);
+}
+
+.window__bar {
+  display: flex;
+  gap: 8px;
+  padding: 12px 14px;
+  background: color-mix(in srgb, var(--tint) 85%, var(--ink) 4%);
+  border-bottom: 1px solid var(--line);
+}
+
+.window__bar i {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ff5f57;
+}
+
+.window__bar i:nth-child(2) {
+  background: #febc2e;
+}
+
+.window__bar i:nth-child(3) {
+  background: #28c840;
+}
+
+.window img {
+  width: 100%;
+  transition: opacity 0.18s var(--ease);
+}
+
+.window img.is-swapping {
+  opacity: 0;
+}
+
+.window--hero {
+  width: min(1180px, 100% - 32px);
+  margin-top: 64px;
+  border-radius: 16px 16px 0 0;
+  margin-bottom: -1px;
+}
+
+/* ─── Secciones ───────────────────────────────────────────── */
+.section {
+  padding: 140px 0;
+}
+
+section[id] {
+  scroll-margin-top: 52px;
+}
+
+.section,
+.final {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 1000px;
+}
+
+.section--tint {
+  background: var(--tint);
+}
+
+.kicker {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 19px;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: -0.01em;
+}
+
+.section__lead {
+  max-width: 680px;
+  margin: 24px auto 0;
+  color: var(--muted);
+  font-size: 21px;
+  line-height: 1.38;
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+/* Selector Desarrollo / Estudio (como un control segmentado de iOS) */
+.switch {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 300px;
+  margin: 48px auto 40px;
+  padding: 4px;
+  border-radius: 980px;
+  background: var(--tint);
+  outline: 1px solid var(--line);
+}
+
+.section--tint .switch {
+  background: var(--surface);
+}
+
+.switch button {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 10px 0;
+  border: 0;
+  border-radius: 980px;
+  background: none;
+  color: var(--muted);
+  font: 600 15px/1 "Inter", system-ui, sans-serif;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  transition: color 0.25s var(--ease);
+}
+
+.switch button[aria-checked="true"] {
+  color: #fff;
+}
+
+.switch__thumb {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  width: calc(50% - 4px);
+  border-radius: 980px;
+  background: #0a84ff;
+  box-shadow: 0 4px 14px rgb(10 132 255 / 0.35);
+  transition:
+    transform 0.4s var(--ease-out),
+    background-color 0.4s;
+}
+
+.switch[data-active="study"] .switch__thumb {
+  transform: translateX(100%);
+  background: #ff9500;
+  box-shadow: 0 4px 14px rgb(255 149 0 / 0.35);
+}
+
+#modos .window {
+  width: min(1080px, 100%);
+}
+
+.mode-caption {
+  margin: 28px auto 0;
+  color: var(--muted);
+  font-size: 17px;
+  text-align: center;
+}
+
+/* ─── Mosaico de funciones ("bento") ──────────────────────── */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+  margin-top: 64px;
+}
+
+.tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.tile__text {
+  padding: 36px 36px 0;
+}
+
+.tile p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.4;
+}
+
+.tile img {
+  margin: 28px 0 0 36px;
+  width: calc(100% - 36px);
+  border-radius: 12px 0 0 0;
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+.tile--wide {
+  grid-column: span 4;
+}
+
+.tile--tall {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+/* La captura del enfoque se recorta centrada en el anillo del temporizador. */
+.tile--tall img {
+  margin: auto 0 0;
+  width: 100%;
+  height: 72%;
+  object-fit: cover;
+  object-position: 50% 38%;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.tile--dark {
+  background: #000;
+  color: #f5f5f7;
+}
+
+.tile--dark p {
+  color: #a1a1a6;
+}
+
+.tile--icon {
+  grid-column: span 2;
+  padding: 34px;
+}
+
+.tile__icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 22px;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--c) 14%, transparent);
+  color: var(--c);
+}
+
+.tile__icon .i {
+  width: 26px;
+  height: 26px;
+}
+
+.tile--icon h3 {
+  font-size: 22px;
+}
+
+/* ─── Privacidad (sección oscura, como las de seguridad de Apple) ─────────── */
+.section--dark {
+  background: #000;
+  color: #f5f5f7;
+}
+
+.section--dark .kicker,
+.section--dark .section__lead {
+  color: #86868b;
+}
+
+.privacy {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.privacy h2,
+.privacy .kicker,
+.privacy .section__lead {
+  text-align: left;
+  margin-inline: 0;
+}
+
+.facts {
+  display: grid;
+  gap: 18px;
+  margin: 40px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.facts li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  color: #a1a1a6;
+  font-size: 17px;
+}
+
+.facts .i {
+  width: 26px;
+  height: 26px;
+  margin-top: -2px;
+  color: #2997ff;
+}
+
+.facts b {
+  color: #f5f5f7;
+}
+
+.window--lock {
+  border-radius: 18px;
+  outline-color: rgb(255 255 255 / 0.12);
+}
+
+/* ─── Pasos de instalación ────────────────────────────────── */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin: 64px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  padding: 32px 28px 28px;
+  border-radius: var(--radius);
+  background: var(--tint);
+}
+
+.step__n {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 18px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--bg);
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.step p {
+  margin: 10px 0 24px;
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.step b {
+  color: var(--ink);
+}
+
+.ill {
+  margin-top: auto;
+  border-radius: 14px;
+  font: 12.5px/1.4 "Segoe UI", "Inter", system-ui, sans-serif;
+  letter-spacing: 0;
+  overflow: hidden;
+}
+
+.ill--browser {
+  background: var(--surface);
+  outline: 1px solid var(--line);
+}
+
+.ill__bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.ill__url {
+  flex: 1;
+  padding: 4px 10px;
+  border-radius: 99px;
+  background: var(--tint);
+  color: var(--muted);
+}
+
+.ill__dl {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  background: rgb(0 113 227 / 0.14);
+  color: var(--link);
+}
+
+.ill__popup {
+  margin: 10px 10px 12px auto;
+  width: 88%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: 0 8px 28px rgb(0 0 0 / 0.14);
+  outline: 1px solid var(--line);
+}
+
+.ill__popup > p {
+  margin: 0 0 8px;
+  font-weight: 600;
+}
+
+.ill__file {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.ill__file img {
+  border-radius: 5px;
+}
+
+.ill__file span {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ill__file b {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.ill__file small {
+  color: var(--muted);
+}
+
+.ill__open {
+  display: inline-block;
+  margin-top: 8px;
+  color: var(--link);
+  font-weight: 600;
+}
+
+/* Aviso de SmartScreen: así se ve en Windows 10 y 11 */
+.ill--smartscreen {
+  padding: 16px 16px 14px;
+  background: #0f52ba;
+  color: #fff;
+}
+
+.ss__title {
+  margin: 0 0 6px;
+  font-size: 17px;
+  font-weight: 300;
+}
+
+.ss__text {
+  margin: 0 0 6px;
+  opacity: 0.9;
+}
+
+.ss__small {
+  font-size: 11.5px;
+}
+
+.ss__more {
+  margin: 0 0 8px;
+}
+
+.ss__more .pulse {
+  text-decoration: underline;
+}
+
+.ss__buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.ss__buttons span {
+  padding: 5px 12px;
+  border: 1px solid rgb(255 255 255 / 0.7);
+}
+
+.ill--installer {
+  padding: 14px;
+  background: var(--surface);
+  outline: 1px solid var(--line);
+}
+
+.inst__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.inst__head img {
+  border-radius: 6px;
+}
+
+.inst__bar {
+  height: 8px;
+  margin: 14px 0 6px;
+  border-radius: 99px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.inst__bar i {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: var(--success);
+  animation: fill 2.6s var(--ease-out) infinite;
+}
+
+@keyframes fill {
+  from {
+    width: 0;
+  }
+}
+
+.inst__text {
+  margin: 0;
+  color: var(--muted);
+}
+
+.inst__check {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.inst__check span {
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 11px;
+}
+
+.inst__buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.inst__buttons span {
+  padding: 5px 16px;
+  border-radius: 4px;
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Lo que hay que pulsar: un halo que late */
+.pulse {
+  border-radius: 4px;
+  animation: pulse 1.8s ease-in-out infinite;
+}
+
+.pulse--delay {
+  animation-delay: 0.9s;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgb(255 214 10 / 0);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgb(255 214 10 / 0.9);
+  }
+}
+
+/* ─── Preguntas ───────────────────────────────────────────── */
+#preguntas h2 {
+  font-size: clamp(36px, 5vw, 56px);
+}
+
+.faq {
+  margin-top: 48px;
+  border-top: 1px solid var(--line);
+}
+
+.faq details {
+  border-bottom: 1px solid var(--line);
+}
+
+.faq summary {
+  position: relative;
+  padding: 22px 44px 22px 0;
+  font-weight: 600;
+  font-size: 19px;
+  letter-spacing: -0.02em;
+  cursor: pointer;
+  list-style: none;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary::after {
+  content: "+";
+  position: absolute;
+  right: 4px;
+  top: 17px;
+  color: var(--muted);
+  font-size: 28px;
+  font-weight: 300;
+  transition: transform 0.3s var(--ease-out);
+}
+
+.faq details[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.faq details p {
+  margin: -6px 0 22px;
+  color: var(--muted);
+}
+
+.hash {
+  margin-top: 32px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.hash code {
+  display: inline-block;
+  margin-top: 4px;
+  font: 12px/1.5 ui-monospace, "Cascadia Code", Consolas, monospace;
+  word-break: break-all;
+  color: var(--ink);
+}
+
+/* ─── Cierre ──────────────────────────────────────────────── */
+.final {
+  padding: 140px 0 120px;
+  text-align: center;
+}
+
+.final__icon {
+  margin: 0 auto 28px;
+  filter: drop-shadow(0 14px 28px rgb(0 98 224 / 0.3));
+}
+
+.final .cta {
+  animation: none;
+}
+
+/* ─── Firma de KiboCode ───────────────────────────────────── */
+/* Logotipo de KiboCode como en su web: Archivo ensanchada y el punto en violeta. */
+.kc {
+  font-family: "Archivo", "Inter", system-ui, sans-serif;
+  font-weight: 600;
+  font-stretch: 112%;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.kc__dot {
+  color: #a855f7;
+}
+
+.maker-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 auto 18px;
+  padding: 6px 10px 6px 7px;
+  border-radius: 980px;
+  background: var(--tint);
+  outline: 1px solid var(--line);
+  color: var(--ink);
+  font-size: 14px;
+  animation: rise 0.6s var(--ease-out) both;
+}
+
+.maker-pill img {
+  display: block;
+}
+
+.maker-pill:hover {
+  text-decoration: none;
+  outline-color: var(--muted);
+}
+
+.maker-pill .i {
+  width: 15px;
+  height: 15px;
+  color: var(--muted);
+}
+
+/* Marca de agua: el nombre de KiboCode, enorme y casi invisible, detrás del cierre. */
+.final {
+  position: relative;
+  overflow: hidden;
+}
+
+.final .wrap {
+  position: relative;
+}
+
+.watermark {
+  position: absolute;
+  left: 50%;
+  bottom: -0.18em;
+  transform: translateX(-50%);
+  font-size: clamp(110px, 20vw, 290px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  white-space: nowrap;
+  background: linear-gradient(180deg, rgb(168 85 247 / 0.16), transparent 80%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  pointer-events: none;
+  user-select: none;
+}
+
+.signature {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 56px;
+  padding: 10px 18px 10px 10px;
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  backdrop-filter: blur(10px);
+  outline: 1px solid var(--line);
+  color: var(--ink);
+  text-align: left;
+}
+
+.signature:hover {
+  text-decoration: none;
+  outline-color: var(--muted);
+}
+
+.signature > span {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.signature small {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.signature .kc {
+  font-size: 20px;
+}
+
+/* ─── Pie ─────────────────────────────────────────────────── */
+.footer {
+  padding: 22px 0;
+  border-top: 1px solid var(--line);
+  background: var(--tint);
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer .brand {
+  font-size: 13px;
+}
+
+.footer__made {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.footer__made .kc {
+  font-size: 13px;
+}
+
+.footer a {
+  color: var(--ink);
+}
+
+/* ─── Hoja "Tu descarga ha empezado" ──────────────────────── */
+.sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+
+.sheet[hidden] {
+  display: none;
+}
+
+.sheet__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgb(0 0 0 / 0.4);
+  backdrop-filter: blur(6px);
+  animation: fade 0.25s ease-out both;
+}
+
+.sheet__panel {
+  position: relative;
+  width: min(520px, 100%);
+  padding: 40px 32px 28px;
+  border-radius: 28px;
+  background: var(--surface);
+  box-shadow: 0 30px 80px rgb(0 0 0 / 0.3);
+  text-align: center;
+  animation: sheet 0.5s var(--ease-out) both;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes sheet {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+  }
+}
+
+.sheet__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--tint);
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.sheet__check {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: var(--success);
+  color: #fff;
+  animation: pop 0.5s var(--ease-out) 0.15s both;
+}
+
+.sheet__check .i {
+  width: 34px;
+  height: 34px;
+  stroke-width: 2.5;
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+}
+
+.sheet h2 {
+  font-size: 28px;
+}
+
+.sheet__lead {
+  margin: 8px 0 18px;
+  color: var(--muted);
+}
+
+.mini-steps {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+  text-align: left;
+}
+
+.mini-steps li {
+  position: relative;
+  padding: 12px 14px 12px 50px;
+  border-radius: 14px;
+  background: var(--tint);
+  font-size: 15.5px;
+  counter-increment: step;
+}
+
+.mini-steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 14px;
+  top: 12px;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.sheet__retry {
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  z-index: 90;
+  max-width: calc(100% - 32px);
+  padding: 12px 18px;
+  border-radius: 14px;
+  background: var(--ink);
+  color: var(--bg);
+  font-size: 15px;
+  transform: translateX(-50%);
+  box-shadow: var(--shadow);
+}
+
+.toast[hidden] {
+  display: none;
+}
+
+/* ─── Pantallas medianas y pequeñas ───────────────────────── */
+@media (max-width: 1000px) {
+  .bento {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tile--wide,
+  .tile--tall {
+    grid-column: span 2;
+    grid-row: auto;
+  }
+
+  .tile--tall img {
+    height: auto;
+    width: calc(100% - 28px);
+  }
+
+  .tile--icon {
+    grid-column: span 1;
+  }
+
+  .steps,
+  .privacy {
+    grid-template-columns: 1fr;
+  }
+
+  .privacy h2,
+  .privacy .kicker,
+  .privacy .section__lead {
+    text-align: center;
+    margin-inline: auto;
+  }
+
+  .facts {
+    max-width: 440px;
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    font-size: 16px;
+  }
+
+  .nav__links {
+    display: none;
+  }
+
+  .nav .btn--small {
+    margin-left: auto;
+  }
+
+  .hero {
+    padding-top: 56px;
+  }
+
+  .cta {
+    flex-direction: column;
+  }
+
+  .btn--big {
+    width: 100%;
+  }
+
+  .section {
+    padding: 96px 0;
+  }
+
+  .bento {
+    grid-template-columns: 1fr;
+  }
+
+  .tile--wide,
+  .tile--tall,
+  .tile--icon {
+    grid-column: auto;
+  }
+
+  .tile__text,
+  .tile--icon {
+    padding: 28px 26px 0;
+  }
+
+  .tile--icon {
+    padding-bottom: 28px;
+  }
+
+  .tile img {
+    margin-left: 26px;
+    width: calc(100% - 26px);
+  }
+
+  .switch {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

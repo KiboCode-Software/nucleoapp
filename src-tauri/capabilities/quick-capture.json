@@ -1,0 +1,12 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "quick-capture",
+  "description": "Ventana flotante de captura rápida: solo necesita guardar en SQLite y avisar a la ventana principal.",
+  "windows": ["quick-capture"],
+  "permissions": [
+    "core:default",
+    "core:window:allow-start-dragging",
+    "sql:default",
+    "sql:allow-execute"
+  ]
+}

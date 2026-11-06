@@ -1,0 +1,12 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "focus-widget",
+  "description": "Widget flotante del temporizador de enfoque: arrastrarlo, minimizarlo a la barra de tareas y poner el tiempo en su título. No toca la base de datos: habla con la ventana principal por eventos.",
+  "windows": ["focus-widget"],
+  "permissions": [
+    "core:default",
+    "core:window:allow-start-dragging",
+    "core:window:allow-minimize",
+    "core:window:allow-set-title"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "Núcleo",
+  "tagline": "Tu jornada, en orden.",
+  "description": "Planifica tu día, anota lo que te frena y guarda lo que aprendes. Para desarrolladores y estudiantes. Gratis, sin cuenta y sin internet.",
+  "url": "https://nucleo.kibocode.lat",
+  "installerName": "Nucleo-Setup.exe",
+  "requirements": "Windows 10 y 11 (64 bits)",
+  "maker": {
+    "name": "KiboCode",
+    "url": "https://kibocode.lat"
+  }
+}
